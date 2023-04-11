@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        ul>li {
+            display: none;
+        }
+        ul>span{
+            letter-spacing: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-5 border">
+                <input type="text" placeholder="search..." id="search">
+                <hr>
+                <ul>
+                    <li data-data="atrina">atrina</li>
+                    <li data-data="artin">artin</li>
+                    <li data-data="arash">arash</li>
+                    <li data-data="arsam">arsam</li>
+                    <li data-data="arshiya">arshiya</li>
+                    <li data-data="arsham">arsham</li>
+                    <li data-data="arshid">arshid</li>
+                    <li data-data="babak">babak</li>
+                    <li data-data="banafshe">banafshe</li>
+                    <li data-data="bahar">bahar</li>
+                    <li data-data="baran">baran</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let _list = document.querySelectorAll('ul>li')
+    document.getElementById('search').addEventListener('input', function (){
+        let val = this.value
+        console.log(val);
+
+        if (val == '' || val == null) {
+            for (i = 0; i < _list.length; i++) {
+                _list[i].style.display = 'none'
+            }
+        } else {
+            for (i = 0; i < _list.length; i++) {
+                temp = _list[i].getAttribute('data-data')
+                console.log(temp);
+                temp = temp.substring(0, val.length)
+                // console.log(temp);
+                if (
+                    temp == val
+                ) {
+                    _list[i].style.display = 'flex'
+                    txt = _list[i].innerText
+                    _name = txt.substring(0, val.length)
+                    _unbold = txt.substring(val.length, txt.length)
+                    _list[i].innerHTML=`<b>${_name}</b><span>${_unbold}</span>`
+                } else {
+                    _list[i].style.display = 'none'
+                    _list[i].innerText=_list[i].getAttribute('data-data')
+                }
+            }
+        }
+
+    })
+</script>
+</html>
